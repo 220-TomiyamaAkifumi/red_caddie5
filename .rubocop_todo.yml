@@ -7,10 +7,11 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 20
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes,
+# IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
 Metrics/LineLength:
-  Max: 112
+  Max: 80
 
 # Offense count: 5
 Style/Documentation:
