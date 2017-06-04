@@ -3,12 +3,41 @@
   <head>
     <title>RedCaddie5</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'theme', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'hello_react' %>
+    <%= javascript_pack_tag 'uikit' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= yield :offcanvas %>
+
+    <div class="tb-sidebar-left uk-visible@m uk-section uk-section-primary">
+      <h4>
+        <%= link_to 'red caddie', '/' %>
+      </h4>
+      <div>
+        <%= yield :sidebar_nav %>
+      </div>
+    </div>
+
+    <div class="tb-main uk-section uk-section-default">
+
+      <nav uk-sticky class="tb-navbar-container uk-navbar-container uk-sticky uk-sticky-fixed" uk-navbar>
+        <% # = # render 'shared/header' %>
+      </nav>
+
+      <div class="uk-container uk-container-small uk-position-relative">
+        <div class="uk-container uk-container-small uk-position-relative">
+          <div class="uk-section">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
