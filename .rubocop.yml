@@ -13,6 +13,7 @@ AllCops:
     - 'tmp/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - 'db/**/**'
   TargetRubyVersion: 2.0
 
 Style/FrozenStringLiteralComment:

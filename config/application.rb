@@ -17,5 +17,25 @@ module RedCaddie5
     # here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # config.generators do |g|
+    #   g.orm :active_record
+    #   g.assets false
+    #   g.helper false
+    #   g.test_framework :rspec,
+    #     view_specs: false,
+    #     routing_specs: false,
+    #     helper_specs: false,
+    #     integration_tool: false
+    # end
+    config.generators do |g|
+      g.orm :active_record
+      g.assets false
+      g.helper false
+      g.test_framework :rspec,
+                       view_specs: false,
+                       routing_specs: false,
+                       helper_specs: false
+    end
   end
 end
