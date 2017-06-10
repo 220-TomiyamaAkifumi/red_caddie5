@@ -1,0 +1,13 @@
+<div class="uk-navbar-left">
+  <%= link_to 'red caddie', root_path, class: "uk-navbar-item uk-navbar-logo uk-visible@m" %>
+  <%= yield :offcanvas_content %>
+</div>
+<div class="uk-navbar-right">
+  <ul class="uk-navbar-nav">
+    <% if current_user %>
+    <li><%= link_to current_user.try(:email), my_page_user_profile_path(current_user.user_profile) %></li>
+    <% else %>
+    <li><%= link_to 'Sing in', new_user_session_path %></li>
+    <% end %>
+  </ul>
+</div>

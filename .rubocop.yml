@@ -13,8 +13,18 @@ AllCops:
     - 'tmp/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
-    - 'db/**/**'
+    - 'db/**/*'
+    - 'lib/templates/**/*'
   TargetRubyVersion: 2.0
+
+Style/Documentation:
+  Exclude:
+    - 'app/controllers/**/*'
+    - 'app/helpers/**/*'
+    - 'app/mailers/**/*'
+    - 'app/models/application_record.rb'
+    - 'config/**/*'
+    - 'test/**/*'
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always
