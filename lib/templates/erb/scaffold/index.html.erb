@@ -2,7 +2,7 @@
 
 <h1><%= plural_table_name.titleize %></h1>
 
-<table>
+<table class="uk-table uk-table-striped">
   <thead>
     <tr>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>

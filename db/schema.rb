@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(version: 20170610170247) do
     t.string "title"
     t.text "note"
     t.date "due_date"
+    t.date "completed_on"
     t.integer "repeat"
     t.boolean "urgent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "due_date"], name: "index_todos_on_user_id_and_due_date"
   end
 
   create_table "users", force: :cascade do |t|

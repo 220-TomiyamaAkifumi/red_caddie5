@@ -32,6 +32,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :completed_on %>
+    <%= form.date_select :completed_on, id: :todo_completed_on %>
+  </div>
+
+  <div class="field">
     <%= form.label :repeat %>
     <%= form.number_field :repeat, id: :todo_repeat %>
   </div>

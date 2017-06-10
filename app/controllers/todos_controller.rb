@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[show edit update destroy]
+  before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
   # GET /todos
   def index
@@ -9,7 +7,8 @@ class TodosController < ApplicationController
   end
 
   # GET /todos/1
-  def show; end
+  def show
+  end
 
   # GET /todos/new
   def new
@@ -17,7 +16,8 @@ class TodosController < ApplicationController
   end
 
   # GET /todos/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /todos
   def create
@@ -46,16 +46,13 @@ class TodosController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_todo
+      @todo = Todo.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_todo
-    @todo = Todo.find(params[:id])
-  end
-
-  # Only allow a trusted parameter "white list" through.
-  def todo_params
-    params
-      .require(:todo)
-      .permit(:user_id, :title, :note, :due_date, :repeat, :urgent)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def todo_params
+      params.require(:todo).permit(:user_id, :title, :note, :due_date, :completed_on, :repeat, :urgent)
+    end
 end
