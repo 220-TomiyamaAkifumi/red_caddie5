@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :todos
   get 'home/index'
 
   root to: 'home#index'
-  resources :todos
 
   resources :user_sessions
 
