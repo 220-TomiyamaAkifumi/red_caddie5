@@ -1,3 +1,7 @@
+<%% content_for :title do %>
+  <%%= <%= class_name %>.model_name.human %>
+<%% end %>
+
 <h1>Editing <%= singular_table_name.titleize %></h1>
 
 <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>

@@ -1,3 +1,7 @@
+<% content_for :title do %>
+  <%= Todo.model_name.human %>
+<% end %>
+
 <h1>Editing Todo</h1>
 
 <%= render 'form', todo: @todo %>

@@ -1,39 +1,69 @@
+<% content_for :title do %>
+  <%= Todo.model_name.human %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @todo.user_id %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @todo.title %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @todo.note %>
-</p>
-
-<p>
-  <strong>Due date:</strong>
-  <%= @todo.due_date %>
-</p>
-
-<p>
-  <strong>Completed on:</strong>
-  <%= @todo.completed_on %>
-</p>
-
-<p>
-  <strong>Repeat:</strong>
-  <%= @todo.repeat %>
-</p>
-
-<p>
-  <strong>Urgent:</strong>
-  <%= @todo.urgent %>
-</p>
+<table class="uk-table uk-margin">
+  <tbody>
+    <tr>
+      <th>
+        User
+      </th>
+      <td>
+        <%= @todo.user_id %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Title
+      </th>
+      <td>
+        <%= @todo.title %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Note
+      </th>
+      <td>
+        <%= @todo.note %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Due date
+      </th>
+      <td>
+        <%= @todo.due_date %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Completed on
+      </th>
+      <td>
+        <%= @todo.completed_on %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Repeat
+      </th>
+      <td>
+        <%= @todo.repeat %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Urgent
+      </th>
+      <td>
+        <%= @todo.urgent %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_todo_path(@todo) %> |
 <%= link_to 'Back', todos_path %>

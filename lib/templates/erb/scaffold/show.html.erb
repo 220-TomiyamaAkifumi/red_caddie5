@@ -1,11 +1,23 @@
+<%% content_for :title do %>
+  <%%= <%= class_name %>.model_name.human %>
+<%% end %>
+
 <p id="notice"><%%= notice %></p>
 
+<table class="uk-table uk-margin">
+  <tbody>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
-<p>
-  <strong><%= attribute.human_name %>:</strong>
-  <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-</p>
-
+    <tr>
+      <th>
+        <%= attribute.human_name %>
+      </th>
+      <td>
+        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+      </td>
+    </tr>
 <% end -%>
+  </tbody>
+</table>
+
 <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
 <%%= link_to 'Back', <%= index_helper %>_path %>
