@@ -1,4 +1,4 @@
-<% content_for :title do %>
+<% content_for :title do -%>
   <%= Todo.model_name.human %>
 <% end %>
 
@@ -7,57 +7,71 @@
 <table class="uk-table uk-margin">
   <tbody>
     <tr>
-      <th>
-        User
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          User
+        </span>
+      </td>
       <td>
         <%= @todo.user_id %>
       </td>
     </tr>
     <tr>
-      <th>
-        Title
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          Title
+        </span>
+      </td>
       <td>
         <%= @todo.title %>
       </td>
     </tr>
     <tr>
-      <th>
-        Note
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          Note
+        </span>
+      </td>
       <td>
         <%= @todo.note %>
       </td>
     </tr>
     <tr>
-      <th>
-        Due date
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          Due date
+        </span>
+      </td>
       <td>
         <%= @todo.due_date %>
       </td>
     </tr>
     <tr>
-      <th>
-        Completed on
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          Completed on
+        </span>
+      </td>
       <td>
         <%= @todo.completed_on %>
       </td>
     </tr>
     <tr>
-      <th>
-        Repeat
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          Repeat
+        </span>
+      </td>
       <td>
         <%= @todo.repeat %>
       </td>
     </tr>
     <tr>
-      <th>
-        Urgent
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          Urgent
+        </span>
+      </td>
       <td>
         <%= @todo.urgent %>
       </td>

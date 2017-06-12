@@ -1,4 +1,4 @@
-<%% content_for :title do %>
+<%% content_for :title do -%>
   <%%= <%= class_name %>.model_name.human %>
 <%% end %>
 
@@ -8,9 +8,11 @@
   <tbody>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
     <tr>
-      <th>
-        <%= attribute.human_name %>
-      </th>
+      <td>
+        <span class="uk-text-muted">
+          <%= attribute.human_name %>
+        </span>
+      </td>
       <td>
         <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
       </td>
