@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  post 'todos/search'
+  get 'todos/search'
   resources :todos
   get 'home/index'
 

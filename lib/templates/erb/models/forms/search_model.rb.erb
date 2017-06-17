@@ -1,0 +1,6 @@
+module Forms
+  class <%= class_name %>Search
+    include ActiveModel::Model
+    attr_accessor *%i(<%= attributes_names.join(' ') %>)
+  end
+end

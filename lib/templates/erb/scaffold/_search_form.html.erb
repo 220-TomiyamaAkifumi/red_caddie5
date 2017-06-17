@@ -1,0 +1,27 @@
+<%%= form_with(model: <%= singular_table_name %>_search, url: <%= plural_table_name %>_search_path, local: true, html: { class: "uk-form-horizontal" }) do |form| %>
+
+<% attributes.each do |attribute| -%>
+<% unless attribute.password_digest? -%>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%%= form.label :<%= attribute.column_name %> %>
+  </label>
+  <div class="uk-form-controls">
+<% if attribute.type == :text -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-textarea uk-form-width-large uk-form-small' %>
+<% elsif attribute.type == :boolean -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-checkbox' %>
+<% elsif attribute.type == :date -%>
+    <%%= form.date_field :<%= attribute.column_name %>, { id: :<%= field_id(attribute.column_name) %>, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+<% else -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-input uk-form-width-medium uk-form-small' %>
+<% end -%>
+  </div>
+</div>
+<% end -%>
+<% end -%>
+
+<div class="uk-margin">
+  <%%= form.submit I18n.t('buttons.search'), class: 'uk-button uk-button-primary' %>
+</div>
+<%% end %>
