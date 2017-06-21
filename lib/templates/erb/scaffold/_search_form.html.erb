@@ -1,4 +1,4 @@
-<%%= form_with(model: <%= singular_table_name %>_search,
+<%%= form_with(model: @<%= singular_table_name %>_search,
       url: <%= plural_table_name %>_path,
       local: true, html: { class: 'uk-form-horizontal' },
       method: 'get') do |form| %>
@@ -15,7 +15,8 @@
 <% elsif attribute.type == :boolean -%>
     <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-checkbox' %>
 <% elsif attribute.type == :date -%>
-    <%%= form.date_field :<%= attribute.column_name %>, { id: :<%= field_id(attribute.column_name) %>, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+    <%%= form.date_field :<%= attribute.column_name %>_from, { id: :<%= field_id(attribute.column_name) %>_from, class: 'uk-select uk-form-width-medium uk-form-small' } %> -
+    <%%= form.date_field :<%= attribute.column_name %>_to, { id: :<%= field_id(attribute.column_name) %>_to, class: 'uk-select uk-form-width-medium uk-form-small' } %>
 <% else -%>
     <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-input uk-form-width-medium uk-form-small' %>
 <% end -%>

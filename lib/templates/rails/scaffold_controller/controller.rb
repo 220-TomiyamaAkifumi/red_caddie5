@@ -8,16 +8,8 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   # GET <%= route_url %>
   def index
-    if params[:forms_<%= singular_table_name %>_search]
-      q = {}
-      params&.fetch(:forms_<%= singular_table_name %>_search)
-        &.permit(*<%= attributes.map(&:name) %>)
-          .each do |key, val|
-            q.merge!(key => val) if val.present?
-          end
-    end
-    @<%= singular_table_name %>_search = Forms::<%= class_name %>Search.new(q)
-    @<%= plural_table_name %> = <%= class_name %>.where(q)
+    @<%= singular_table_name %>_search = Forms::<%= class_name %>Search.new(search_params)
+    @<%= plural_table_name %> = <%= class_name %>.search(@<%= singular_table_name %>_search)
   end
 
   # GET <%= route_url %>/1
@@ -75,12 +67,10 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
 
     def search_params
-      <%- if attributes_names.empty? -%>
-      params.fetch(:forms_<%= singular_table_name %>_search, {})
-      <%- else -%>
-      params.require(:forms_<%= singular_table_name %>_search)
-        .permit(<%= attributes.map { |attr| ":#{attr.column_name}" }.join(', ') %>).reject { |_k, v| v.blank? }
-      <%- end -%>
+      return {} unless params[:forms_<%= singular_table_name %>_search]
+
+      params.fetch(:forms_<%= singular_table_name %>_search)
+        .permit(*Forms::<%= class_name %>Search.attributes_names)
     end
 end
 <% end -%>

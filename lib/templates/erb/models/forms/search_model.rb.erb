@@ -1,6 +1,26 @@
+<% attrs = attributes.map { |attr| (attr.type == :date) ? ["#{attr.name}_from", "#{attr.name}_to"] : attr.name }.flatten -%>
 module Forms
   class <%= class_name %>Search
     include ActiveModel::Model
-    attr_accessor *%i(<%= attributes_names.join(' ') %>)
+    attr_accessor *%i(<%= attrs.join(' ') %>)
+
+    def self.attributes_names
+      %w(<%= attrs.join(' ') %>)
+    end
+
+    def initialize(params)
+<% attributes.each do |attribute| -%>
+<% if attribute.type == :date -%>
+      @<%= attribute.name %>_from =
+        params[:<%= attribute.name %>_from].present? ?
+          Date.parse(params[:<%= attribute.name %>_from]) : Date.current.beginning_of_month
+      @<%= attribute.name %>_to =
+        params[:<%= attribute.name %>_to].present? ?
+          Date.parse(params[:<%= attribute.name %>_to]) : Date.current.end_of_month
+<% else -%>
+      @<%= attribute.name %> = params[:<%= attribute.name %>]
+<% end -%>
+<% end -%>
+    end
   end
 end

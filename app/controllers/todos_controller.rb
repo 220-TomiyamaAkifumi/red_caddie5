@@ -3,16 +3,8 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    if params[:forms_todo_search]
-      q = {}
-      params&.fetch(:forms_todo_search)
-        &.permit(*["user_id", "title", "note", "due_date", "completed_on", "repeat", "urgent"])
-          .each do |key, val|
-            q.merge!(key => val) if val.present?
-          end
-    end
-    @todo_search = Forms::TodoSearch.new(q)
-    @todos = Todo.where(q)
+    @todo_search = Forms::TodoSearch.new(search_params)
+    @todos = Todo.search(@todo_search)
   end
 
   # GET /todos/1
@@ -66,7 +58,9 @@ class TodosController < ApplicationController
     end
 
     def search_params
-      params.require(:forms_todo_search)
-        .permit(:user_id, :title, :note, :due_date, :completed_on, :repeat, :urgent).reject { |_k, v| v.blank? }
+      return {} unless params[:forms_todo_search]
+
+      params.fetch(:forms_todo_search)
+        .permit(*Forms::TodoSearch.attributes_names)
     end
 end
