@@ -1,18 +1,18 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
-  # POST /todos/search
-  def search
-    @todo_search = Forms::TodoSearch.new(search_params)
-    @todos = Todo.where(search_params)
-    # redirect_to todos_path
-    render :index
-  end
-
   # GET /todos
   def index
-    @todo_search = Forms::TodoSearch.new
-    @todos = Todo.all
+    if params[:forms_todo_search]
+      q = {}
+      params&.fetch(:forms_todo_search)
+        &.permit(*["user_id", "title", "note", "due_date", "completed_on", "repeat", "urgent"])
+          .each do |key, val|
+            q.merge!(key => val) if val.present?
+          end
+    end
+    @todo_search = Forms::TodoSearch.new(q)
+    @todos = Todo.where(q)
   end
 
   # GET /todos/1
@@ -62,7 +62,7 @@ class TodosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def todo_params
-      params.require(:todo).permit(:user_id, :title, :note, :due_date, :completed_on, :repeat, :urgent)
+      params.require(:todo).permit(*["user_id", "title", "note", "due_date", "completed_on", "repeat", "urgent"])
     end
 
     def search_params

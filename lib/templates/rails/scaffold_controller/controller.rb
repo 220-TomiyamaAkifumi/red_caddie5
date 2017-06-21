@@ -6,18 +6,18 @@ require_dependency "<%= namespaced_path %>/application_controller"
 class <%= controller_class_name %>Controller < ApplicationController
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
-  # POST <%= route_url %>/search
-  def search
-    @<%= singular_table_name %>_search = Forms::<%= class_name %>Search.new(search_params)
-    @<%= plural_table_name %> = <%= class_name %>.where(search_params)
-    # redirect_to <%=plural_table_name %>_path
-    render :index
-  end
-
   # GET <%= route_url %>
   def index
-    @<%= singular_table_name %>_search = Forms::<%= class_name %>Search.new
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
+    if params[:forms_<%= singular_table_name %>_search]
+      q = {}
+      params&.fetch(:forms_<%= singular_table_name %>_search)
+        &.permit(*<%= attributes.map(&:name) %>)
+          .each do |key, val|
+            q.merge!(key => val) if val.present?
+          end
+    end
+    @<%= singular_table_name %>_search = Forms::<%= class_name %>Search.new(q)
+    @<%= plural_table_name %> = <%= class_name %>.where(q)
   end
 
   # GET <%= route_url %>/1
@@ -70,7 +70,7 @@ class <%= controller_class_name %>Controller < ApplicationController
       <%- if attributes_names.empty? -%>
       params.fetch(:<%= singular_table_name %>, {})
       <%- else -%>
-      params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      params.require(:<%= singular_table_name %>).permit(*<%= attributes.map(&:name) %>)
       <%- end -%>
     end
 

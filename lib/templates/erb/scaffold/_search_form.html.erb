@@ -1,4 +1,7 @@
-<%%= form_with(model: <%= singular_table_name %>_search, url: <%= plural_table_name %>_search_path, local: true, html: { class: "uk-form-horizontal" }) do |form| %>
+<%%= form_with(model: <%= singular_table_name %>_search,
+      url: <%= plural_table_name %>_path,
+      local: true, html: { class: 'uk-form-horizontal' },
+      method: 'get') do |form| %>
 
 <% attributes.each do |attribute| -%>
 <% unless attribute.password_digest? -%>
@@ -22,6 +25,6 @@
 <% end -%>
 
 <div class="uk-margin">
-  <%%= form.submit I18n.t('buttons.search'), class: 'uk-button uk-button-primary' %>
+  <%%= form.submit t('buttons.search'), class: 'uk-button uk-button-primary' %>
 </div>
 <%% end %>

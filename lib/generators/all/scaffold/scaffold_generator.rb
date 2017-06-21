@@ -29,10 +29,6 @@ module All # :nodoc:
       template '../models/forms/search_model.rb.erb', "app/models/forms/#{file_name}_search.rb"
     end
 
-    def add_serach_route
-      route "post '#{plural_table_name}/search'"
-    end
-
   protected
 
     def available_views
