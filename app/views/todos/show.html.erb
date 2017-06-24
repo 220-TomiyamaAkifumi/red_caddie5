@@ -1,0 +1,83 @@
+<% content_for :title do -%>
+  <%= Todo.model_name.human %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<table class="uk-table uk-margin">
+  <tbody>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          User
+        </span>
+      </td>
+      <td>
+        <%= @todo.user_id %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Title
+        </span>
+      </td>
+      <td>
+        <%= @todo.title %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Note
+        </span>
+      </td>
+      <td>
+        <%= @todo.note %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Due date
+        </span>
+      </td>
+      <td>
+        <%= @todo.due_date %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Completed on
+        </span>
+      </td>
+      <td>
+        <%= @todo.completed_on %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Repeat
+        </span>
+      </td>
+      <td>
+        <%= @todo.repeat %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Urgent
+        </span>
+      </td>
+      <td>
+        <%= @todo.urgent %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_todo_path(@todo) %> |
+<%= link_to 'Back', todos_path %>

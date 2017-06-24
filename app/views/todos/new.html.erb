@@ -1,0 +1,9 @@
+<% content_for :title do %>
+  <%= Todo.model_name.human %>
+<% end %>
+
+<h1>New Todo</h1>
+
+<%= render 'form', todo: @todo %>
+
+<%= link_to 'Back', todos_path %>

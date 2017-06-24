@@ -1,0 +1,25 @@
+<%% content_for :title do -%>
+  <%%= <%= class_name %>.model_name.human %>
+<%% end %>
+
+<p id="notice"><%%= notice %></p>
+
+<table class="uk-table uk-margin">
+  <tbody>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          <%= attribute.human_name %>
+        </span>
+      </td>
+      <td>
+        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
+      </td>
+    </tr>
+<% end -%>
+  </tbody>
+</table>
+
+<%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
+<%%= link_to 'Back', <%= index_helper %>_path %>

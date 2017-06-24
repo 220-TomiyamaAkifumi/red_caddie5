@@ -1,0 +1,68 @@
+<%= form_with(model: @todo_search,
+      url: todos_path,
+      local: true, html: { class: 'uk-form-horizontal' },
+      method: 'get') do |form| %>
+
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :user_id %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.number_field :user_id, id: :todo_user_id, class: 'uk-input uk-form-width-medium uk-form-small' %>
+  </div>
+</div>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :title %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.text_field :title, id: :todo_title, class: 'uk-input uk-form-width-medium uk-form-small' %>
+  </div>
+</div>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :note %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.text_area :note, id: :todo_note, class: 'uk-textarea uk-form-width-large uk-form-small' %>
+  </div>
+</div>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :due_date %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.date_field :due_date_from, { id: :todo_due_date_from, class: 'uk-select uk-form-width-medium uk-form-small' } %> -
+    <%= form.date_field :due_date_to, { id: :todo_due_date_to, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+  </div>
+</div>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :completed_on %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.date_field :completed_on_from, { id: :todo_completed_on_from, class: 'uk-select uk-form-width-medium uk-form-small' } %> -
+    <%= form.date_field :completed_on_to, { id: :todo_completed_on_to, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+  </div>
+</div>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :repeat %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.number_field :repeat, id: :todo_repeat, class: 'uk-input uk-form-width-medium uk-form-small' %>
+  </div>
+</div>
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :urgent %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.check_box :urgent, id: :todo_urgent, class: 'uk-checkbox' %>
+  </div>
+</div>
+
+<div class="uk-margin">
+  <%= form.submit t('buttons.search'), class: 'uk-button uk-button-primary' %>
+</div>
+<% end %>
