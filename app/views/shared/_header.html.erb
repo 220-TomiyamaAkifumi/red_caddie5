@@ -5,9 +5,10 @@
 <div class="uk-navbar-right">
   <ul class="uk-navbar-nav">
     <% if current_user %>
-    <li><%= link_to current_user.try(:email), my_page_user_profile_path(current_user.user_profile) %></li>
+    <li><%= link_to current_user&.email, try(:my_page_user_profile_path, current_user.try(:user_profile)) %></li>
+    <li><%= link_to 'Sign out', sign_out_path, data: { method: :post } %></li>
     <% else %>
-    <li><%= link_to 'Sign in', new_user_session_path %></li>
+    <li><%= link_to 'Sign in', sign_in_path %></li>
     <% end %>
   </ul>
 </div>

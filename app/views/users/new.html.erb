@@ -1,0 +1,9 @@
+<% content_for :title do %>
+  <%= User.model_name.human %>
+<% end %>
+
+<h1>New User</h1>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Back', users_path %>

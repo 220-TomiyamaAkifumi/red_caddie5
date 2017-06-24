@@ -1,0 +1,7 @@
+ja:
+  user_sessions:
+    failure:
+      invalid: メールアドレスまたはパスワードが違います。
+    notice:
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。

@@ -1,0 +1,23 @@
+<% content_for :title do -%>
+  <%= User.model_name.human %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<table class="uk-table uk-margin">
+  <tbody>
+    <tr>
+      <td>
+        <span class="uk-text-muted">
+          Email
+        </span>
+      </td>
+      <td>
+        <%= @user.email %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

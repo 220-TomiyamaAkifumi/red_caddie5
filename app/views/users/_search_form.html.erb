@@ -1,0 +1,18 @@
+<%= form_with(model: @user_search,
+      url: users_path,
+      local: true, html: { class: 'uk-form-horizontal' },
+      method: 'get') do |form| %>
+
+<div class="uk-margin-small">
+  <label class="uk-form-label">
+    <%= form.label :email %>
+  </label>
+  <div class="uk-form-controls">
+    <%= form.text_field :email, id: :user_email, class: 'uk-input uk-form-width-medium uk-form-small' %>
+  </div>
+</div>
+
+<div class="uk-margin">
+  <%= form.submit t('buttons.search'), class: 'uk-button uk-button-primary' %>
+</div>
+<% end %>
