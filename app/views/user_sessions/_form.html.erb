@@ -16,7 +16,7 @@
     <%= form.label :email %>
   </label>
   <div class="uk-form-controls">
-    <%= form.text_field :email, id: :user_email, class: 'uk-input uk-form-width-medium' %>
+    <%= form.text_field :email, id: :user_email, class: 'uk-input uk-form-width-medium', autofocus: true %>
   </div>
 </div>
 <div class="uk-margin">
@@ -29,6 +29,6 @@
 </div>
 
 <div class="uk-margin">
-  <%= form.submit nil, class: 'uk-button uk-button-primary' %>
+  <%= form.submit t('buttons.sign_in'), class: 'uk-button uk-button-primary' %>
 </div>
 <% end %>
