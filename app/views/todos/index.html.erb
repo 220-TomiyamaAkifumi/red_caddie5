@@ -8,6 +8,8 @@
 
 <%= render 'search_form', todo_search: @todo_search %>
 
+<hr />
+
 <table class="uk-table uk-table-striped">
   <thead>
     <tr>
@@ -23,7 +25,7 @@
   </thead>
 
   <tbody>
-    <% @todos.each do |todo| %>
+    <% Array(@todos).each do |todo| %>
       <tr>
         <td><%= todo.user_id %></td>
         <td><%= todo.title %></td>

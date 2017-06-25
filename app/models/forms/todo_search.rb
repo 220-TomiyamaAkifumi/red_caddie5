@@ -2,12 +2,14 @@ module Forms
   class TodoSearch
     include ActiveModel::Model
     attr_accessor *%i(user_id title note due_date_from due_date_to completed_on_from completed_on_to repeat urgent)
+    attr_reader *%i(users)
 
     def self.attributes_names
       %w(user_id title note due_date_from due_date_to completed_on_from completed_on_to repeat urgent)
     end
 
     def initialize(params)
+      @users = User.all
       @user_id = params[:user_id]
       @title = params[:title]
       @note = params[:note]

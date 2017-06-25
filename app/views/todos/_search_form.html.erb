@@ -8,7 +8,7 @@
     <%= form.label :user_id %>
   </label>
   <div class="uk-form-controls">
-    <%= form.number_field :user_id, id: :todo_user_id, class: 'uk-input uk-form-width-medium uk-form-small' %>
+    <%= form.collection_select :user_id, @todo_search.users, :id, :name, { include_blank: 'Select User', selected: @todo_search.user_id}, { class: 'uk-select uk-form-width-medium' } %>
   </div>
 </div>
 <div class="uk-margin-small">
@@ -24,7 +24,7 @@
     <%= form.label :note %>
   </label>
   <div class="uk-form-controls">
-    <%= form.text_area :note, id: :todo_note, class: 'uk-textarea uk-form-width-large uk-form-small' %>
+    <%= form.text_area :note, id: :todo_note, class: 'uk-textarea uk-form-width-medium uk-form-small' %>
   </div>
 </div>
 <div class="uk-margin-small">
@@ -32,8 +32,8 @@
     <%= form.label :due_date %>
   </label>
   <div class="uk-form-controls">
-    <%= form.date_field :due_date_from, { id: :todo_due_date_from, class: 'uk-select uk-form-width-medium uk-form-small' } %> -
-    <%= form.date_field :due_date_to, { id: :todo_due_date_to, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+    <%= form.date_field :due_date_from, { id: :todo_due_date_from, class: 'uk-input uk-form-width-medium uk-form-small' } %> -
+    <%= form.date_field :due_date_to, { id: :todo_due_date_to, class: 'uk-input uk-form-width-medium uk-form-small' } %>
   </div>
 </div>
 <div class="uk-margin-small">
@@ -41,8 +41,8 @@
     <%= form.label :completed_on %>
   </label>
   <div class="uk-form-controls">
-    <%= form.date_field :completed_on_from, { id: :todo_completed_on_from, class: 'uk-select uk-form-width-medium uk-form-small' } %> -
-    <%= form.date_field :completed_on_to, { id: :todo_completed_on_to, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+    <%= form.date_field :completed_on_from, { id: :todo_completed_on_from, class: 'uk-input uk-form-width-medium uk-form-small' } %> -
+    <%= form.date_field :completed_on_to, { id: :todo_completed_on_to, class: 'uk-input uk-form-width-medium uk-form-small' } %>
   </div>
 </div>
 <div class="uk-margin-small">

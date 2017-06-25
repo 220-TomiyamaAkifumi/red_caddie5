@@ -13,8 +13,21 @@ class <%= class_name %> < <%= parent_class_name.classify %>
   <%- if attribute.type == :date -%>
     @<%= plural_table_name %> = @<%= plural_table_name %>
       .where(<%= attribute.name %>: <%= search_model %>.<%= attribute.name %>_from..<%= search_model %>.<%= attribute.name %>_to)
+  <%- elsif attribute.type == :string -%>
+    @<%= plural_table_name %> = @<%= plural_table_name %>
+      .where('<%= "#{attribute.name} like ?" %>', "#{<%= search_model %>.<%= attribute.name %>}%") if <%= search_model %>.<%= attribute.name %>.present?
+  <%- elsif attribute.type == :text -%>
+    @<%= plural_table_name %> = @<%= plural_table_name %>
+      .where('<%= "#{attribute.name} like ?" %>', "%#{<%= search_model %>.<%= attribute.name %>}%") if <%= search_model %>.<%= attribute.name %>.present?
+  <%- elsif attribute.type == :integer -%>
+    @<%= plural_table_name %> = @<%= plural_table_name %>
+      .where(<%= attribute.name %>: <%= search_model %>.<%= attribute.name %>) if <%= search_model %>.<%= attribute.name %>.present?
+  <%- elsif attribute.type == :boolean -%>
+    @<%= plural_table_name %> = @<%= plural_table_name %>
+      .where(<%= attribute.name %>: <%= search_model %>.<%= attribute.name %>) # if <%= search_model %>.<%= attribute.name %>.present?
   <%- end -%>
 <% end -%>
+    @<%= plural_table_name %>
   end
 end
 <% end -%>

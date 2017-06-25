@@ -21,7 +21,7 @@
   </thead>
 
   <tbody>
-    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+    <%% Array(@<%= plural_table_name %>).each do |<%= singular_table_name %>| %>
       <tr>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
         <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>

@@ -11,12 +11,19 @@
   </label>
   <div class="uk-form-controls">
 <% if attribute.type == :text -%>
-    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-textarea uk-form-width-large uk-form-small' %>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-textarea uk-form-width-medium uk-form-small' %>
+<% elsif attribute.type == :integer -%>
+  <%- if attribute.column_name.ends_with?('_id') -%>
+  <%- _model_name = attribute.column_name.sub(/_id/, '').classify.constantize.model_name -%>
+    <%%= form.collection_select :<%= attribute.column_name %>, @<%= singular_table_name %>_search.<%= _model_name.plural %>, :id, :name, { include_blank: '<%= "Select #{_model_name.name}" %>', selected: @<%= singular_table_name %>_search.<%= attribute.column_name %>}, { class: 'uk-select uk-form-width-medium' } %>
+  <%- else -%>
+    <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-input uk-form-width-medium uk-form-small' %>
+  <%- end -%>
 <% elsif attribute.type == :boolean -%>
     <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-checkbox' %>
 <% elsif attribute.type == :date -%>
-    <%%= form.date_field :<%= attribute.column_name %>_from, { id: :<%= field_id(attribute.column_name) %>_from, class: 'uk-select uk-form-width-medium uk-form-small' } %> -
-    <%%= form.date_field :<%= attribute.column_name %>_to, { id: :<%= field_id(attribute.column_name) %>_to, class: 'uk-select uk-form-width-medium uk-form-small' } %>
+    <%%= form.date_field :<%= attribute.column_name %>_from, { id: :<%= field_id(attribute.column_name) %>_from, class: 'uk-input uk-form-width-medium uk-form-small' } %> -
+    <%%= form.date_field :<%= attribute.column_name %>_to, { id: :<%= field_id(attribute.column_name) %>_to, class: 'uk-input uk-form-width-medium uk-form-small' } %>
 <% else -%>
     <%%= form.<%= attribute.field_type %> :<%= attribute.column_name %>, id: :<%= field_id(attribute.column_name) %>, class: 'uk-input uk-form-width-medium uk-form-small' %>
 <% end -%>

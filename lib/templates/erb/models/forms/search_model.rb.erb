@@ -3,6 +3,10 @@ module Forms
   class <%= class_name %>Search
     include ActiveModel::Model
     attr_accessor *%i(<%= attrs.join(' ') %>)
+    <%- _attrs = attributes.select do |attribute| -%>
+    <%- attribute.column_name.ends_with?('_id') -%>
+    <%- end -%>
+    attr_reader *%i(<%= _attrs.map { |attr| attr.column_name.sub(/_id/, '').classify.constantize.model_name.plural }.join(' ') %>)
 
     def self.attributes_names
       %w(<%= attrs.join(' ') %>)
@@ -17,6 +21,12 @@ module Forms
       @<%= attribute.name %>_to =
         params[:<%= attribute.name %>_to].present? ?
           Date.parse(params[:<%= attribute.name %>_to]) : Date.current.end_of_month
+<% elsif attribute.type == :integer -%>
+  <%- if attribute.column_name.ends_with?('_id') -%>
+  <%- _model_name = attribute.column_name.sub(/_id/, '').classify.constantize.model_name -%>
+      @<%= _model_name.plural %> = <%= _model_name.name.classify %>.all
+  <%- end -%>
+      @<%= attribute.name %> = params[:<%= attribute.name %>]
 <% else -%>
       @<%= attribute.name %> = params[:<%= attribute.name %>]
 <% end -%>
